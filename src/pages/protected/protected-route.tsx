@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { Routes } from "../../constants/pages";
+import { Routes } from "@constants/pages";
 
 interface ProtectedRouteProps {
   element: React.ReactNode;

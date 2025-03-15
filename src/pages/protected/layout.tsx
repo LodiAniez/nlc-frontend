@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Routes } from "../../constants/pages";
+import { Routes } from "@constants/pages";
 
 type Props = {
   children: React.ReactNode;
