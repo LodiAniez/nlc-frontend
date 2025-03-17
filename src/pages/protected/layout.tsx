@@ -9,7 +9,6 @@ const ProtectedLayout = ({ children }: Props) => {
   return (
     <div className="flex flex-col min-h-screen">
       <nav className="w-full bg-gray-800 text-white p-4 flex justify-between">
-        <h1>Protected Layout</h1>
         <div className="flex space-x-4">
           <Link to={Routes.PROJECTS} className="hover:underline">
             Projects

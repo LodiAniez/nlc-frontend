@@ -1,8 +1,21 @@
 import { useForm, FormProvider } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
 import Input from "@components/input";
 import Button from "@components/button";
+import { Endpoints, defaultHeaders } from "@constants/api";
+import { Routes } from "@constants/pages";
+import { catchError } from "@utils/methods";
+
+type LoginRequest = {
+  email: string;
+  password: string;
+};
+
+type LoginResponse = {
+  accessToken: string;
+};
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -13,12 +26,30 @@ const schema = yup.object().shape({
 });
 
 const Login = () => {
-  const methods = useForm({
+  const navigate = useNavigate();
+  const methods = useForm<LoginRequest>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const { handleSubmit } = methods;
+
+  const onSubmit = async (data: LoginRequest) => {
+    try {
+      const request = await fetch(Endpoints.Auth.Login, {
+        method: "POST",
+        credentials: "include",
+        headers: defaultHeaders,
+        body: JSON.stringify(data),
+      });
+
+      const json: LoginResponse = await request.json();
+      localStorage.setItem("accessToken", json.accessToken);
+
+      navigate(Routes.PROJECTS);
+    } catch (e) {
+      const err = catchError(e);
+      alert(err);
+    }
   };
 
   return (
@@ -26,10 +57,12 @@ const Login = () => {
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h1 className="text-2xl mb-6">Login</h1>
         <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Input name="email" label="Email" type="email" />
             <Input name="password" label="Password" type="password" />
-            <Button type="submit">Login</Button>
+            <Button type="submit" className="w-full">
+              Login
+            </Button>
           </form>
         </FormProvider>
       </div>
