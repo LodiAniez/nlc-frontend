@@ -21,7 +21,9 @@ const Projects = () => {
 
   return (
     <PageLayout<Project>
-      datableData={projects}
+      pageTitle="Projects"
+      addBtnLabel="Add Project"
+      tableData={projects}
       handleAdd={handleAdd}
       isModalOpen={isModalOpen}
       modalTitle={modalTitle}

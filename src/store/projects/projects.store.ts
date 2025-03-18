@@ -18,7 +18,7 @@ export const fetchProjectsAtom = atom(
       });
 
       if (response.status === 401) {
-        alert("");
+        alert("You session has expired, please login again.");
         window.location.replace("/");
         return [];
       }
