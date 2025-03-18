@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { Routes as PageRoutes } from "@constants/pages";
 import LoginPage from "@pages/public/login";
-import ProtectedLayout from "@pages/protected/layout";
+import ProtectedLayout from "@layouts/protected-layout";
 import ProtectedRoute from "@pages/protected/protected-route";
 import ServiceOrdersPage from "@pages/protected/service-orders";
 import ProjectsPage from "@pages/protected/projects";

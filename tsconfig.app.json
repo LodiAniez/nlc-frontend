@@ -26,7 +26,7 @@
       "@components/*": ["components/*"],
       "@pages/*": ["pages/*"],
       "@constants/*": ["constants/*"],
-      "@parts/*": ["parts/*"],
+      "@layouts/*": ["layouts/*"],
       "@store/*": ["store/*"],
       "@utils/*": ["utils/*"]
     }
