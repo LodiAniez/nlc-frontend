@@ -18,7 +18,7 @@ export const fetchServiceOrderAtom = atom(
       });
 
       if (response.status === 401) {
-        alert("");
+        alert("Your session has expired, please login again.");
         window.location.replace("/");
         return [];
       }
